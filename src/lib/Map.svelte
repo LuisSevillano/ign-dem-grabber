@@ -175,14 +175,10 @@
 				${tile
 					.map(
 						(d) => `
-					<form
-						method="post"
-						id="form"
-						action="https://centrodedescargas.cnig.es/CentroDescargas/descargaDir">
-						<input type="hidden" name="secDescDirLA" value="${d.download_id}" />
-						<input type="hidden" name="codSerie" value="${d.series}" />
-						<button class="tip-download" type="submit">Descargar ${d.datum}${d.utm_zone !== 'NA' ? ` (UTM ${d.utm_zone})` : ''}</button>
-					</form>
+						<form method="get" action="https://centrodedescargas.cnig.es/CentroDescargas/detalleArchivo" target="_blank">
+							<input type="hidden" name="sec" value="${d.download_id}" />
+							<button class="tip-download" type="submit">Descargar ${d.datum}${d.utm_zone !== 'NA' ? ` (UTM ${d.utm_zone})` : ''}</button>
+						</form>
 				`
 					)
 					.join('')}
