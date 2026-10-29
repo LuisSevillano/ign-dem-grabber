@@ -56,9 +56,6 @@
 	});
 
 	onMount(async () => {
-		// use retina tiles if dpi > 1
-		const retina = window.devicePixelRatio > 1 ? '@2' : '';
-
 		// start map
 		map = new maplibregl.Map({
 			container: 'map',
@@ -68,33 +65,13 @@
 			maxZoom: 10,
 			// maxBounds: bounds,
 			attributionControl: false,
-			style: {
-				version: 8,
-				sources: {
-					tiles: {
-						type: 'raster',
-						tiles: [
-							`https://a.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}${retina}.png`,
-							`https://b.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}${retina}.png`
-						],
-						tileSize: 256
-					}
-				},
-				layers: [
-					{
-						id: 'tiles',
-						type: 'raster',
-						source: 'tiles'
-					}
-				]
-			}
+			style: 'https://tiles.openfreemap.org/styles/positron'
 		});
-
 		map.dragRotate.disable();
 		map.addControl(
 			new maplibregl.AttributionControl({
 				customAttribution:
-					'© <a href="https://centrodedescargas.cnig.es/CentroDescargas/index.jsp#">CC-BY 4.0 scne.es</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> © <a href="https://carto.com/attribution/#basemaps">CARTO</a>'
+					'© <a href="https://centrodedescargas.cnig.es/CentroDescargas/index.jsp#">CC-BY 4.0 scne.es</a> © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> © <a href="https://openfreemap.org/">OpenFreeMap</a>'
 			})
 		);
 
